@@ -18,7 +18,9 @@ public class ListPerformanceComparison {
         System.out.println("---- Populate both lists ----");
         for (int i = 0; i < SIZE; i++) {
             //code here
+            arrayList.add(i);
             //code here
+            linkedList.add(i);
         }
 
         // 2️⃣ Random insertions and deletions
@@ -39,9 +41,15 @@ public class ListPerformanceComparison {
     private static void testRandomInsertDelete(List<Integer> list, String name) {
         Random random = new Random();
         long start = System.nanoTime();
-
         // insert your code here
-
+        for (int i=0;i<OPERATIONS;i++){
+            int index=random.nextInt(list.size());
+            list.add(index, i);
+        }
+        for(int j=0;j<OPERATIONS;j++){
+            int index=random.nextInt(list.size());
+            list.remove(index);
+        }
         long end = System.nanoTime();
         System.out.printf("%s - Random insert/delete: %.3f ms%n",
                 name, (end - start) / 1_000_000.0);
@@ -53,11 +61,33 @@ public class ListPerformanceComparison {
         long start = System.nanoTime();
 
         // Insertions at beginning and end
-
+        if(list instanceof LinkedList){
+            for(int i=0;i<OPERATIONS;i++){
+                ((LinkedList<Integer>) list).addFirst(i);
+                ((LinkedList<Integer>) list).addLast(i);
+            }
+        }
+        else{
+            for(int i=0;i<OPERATIONS;i++){
+                list.add(0,i);
+                list.add(i);
+            }
+        }
         // add your code here
 
         // Deletions at beginning and end
-
+        if(list instanceof LinkedList){
+            for(int i=0;i<OPERATIONS;i++){
+                ((LinkedList<Integer>) list).removeFirst();
+                ((LinkedList<Integer>) list).removeLast();
+            }
+        }
+        else{
+            for(int i=0;i<OPERATIONS;i++){
+                list.remove(0);
+                list.remove(OPERATIONS-1);
+            }
+        }
         // add your code here
 
         long end = System.nanoTime();
@@ -72,6 +102,9 @@ public class ListPerformanceComparison {
         long start = System.nanoTime();
 
         long sum = 0;
+        for(int i=0;i<OPERATIONS;i++){
+            sum+=list.get(random.nextInt(list.size()));
+        }
         // sum of the all elements in the list
        // insert your code here
 
