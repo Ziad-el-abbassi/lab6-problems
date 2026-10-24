@@ -6,7 +6,7 @@ public class BookQueue {
     private LinkedList<Book> queue;
 
     public BookQueue() {
-
+        this.queue=new LinkedList<>();
     }
 
     public void enqueue(Book book) {

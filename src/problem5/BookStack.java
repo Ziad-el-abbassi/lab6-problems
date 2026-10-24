@@ -6,7 +6,7 @@ public class BookStack {
     private LinkedList<Book> stack;
 
     public BookStack() {
-
+        this.stack=new LinkedList<>();
     }
 
     public void push(Book book) {

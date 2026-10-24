@@ -16,7 +16,7 @@ public class Bank {
     }
     public void addTransaction(double transaction,Customer c){
         int i=customers.indexOf(c);
-        c.getTransaction().add(transaction);
+        customers.get(i).getTransaction().add(transaction);
     }
     public void print_statement(Customer c){
         System.out.println(c.getName());
